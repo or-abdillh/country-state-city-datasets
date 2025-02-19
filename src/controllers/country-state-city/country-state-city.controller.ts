@@ -2,7 +2,7 @@ import { Controller, HttpCode, HttpStatus } from '@nestjs/common';
 import { Get } from '@nestjs/common';
 import { CountryStateCityService } from 'src/services/country-state-city/country-state-city.service';
 
-@Controller('country-state-city')
+@Controller('datasets')
 export class CountryStateCityController {
 
     constructor (private countryStateCityService: CountryStateCityService) {}
