@@ -6,11 +6,7 @@ async function bootstrap() {
 
   // cors
   app.enableCors({
-    origin: [
-      "https://hulu.dtz-internal-only.com",
-      "https://app.hulutarget.com",
-      "http://localhost"
-    ]
+    origin: '*'
   })
 
   await app.listen(process.env.PORT ?? 3000);
