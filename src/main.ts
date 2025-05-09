@@ -1,21 +1,13 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import corsConfig from './config/cors';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  const allowedOrigins = [
-    'https://hulu.dtz-internal-only.com',
-    'https://app.hulutarget.com',
-    'http://localhost:8000',
-    'http://localhost:5173',
-    'http://127.0.0.1:8000',
-    'http://127.0.0.1:5173'
-  ];
-
   app.enableCors({
     origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
+      if (!origin || corsConfig.origins.includes(origin)) {
         callback(null, origin);
       } else {
         callback(new Error('Not allowed by CORS'));
