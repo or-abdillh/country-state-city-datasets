@@ -1,21 +1,14 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
+import corsConfig from 'src/config/cors';
 
 @Injectable()
 export class CorsMiddleware implements NestMiddleware {
     use(req: Request, res: Response, next: NextFunction) {
-        const allowedOrigins = [
-            'https://hulu.dtz-internal-only.com',
-            'https://app.hulutarget.com',
-            'http://localhost:8000',
-            'http://localhost:5173',
-            'http://127.0.0.1:8000',
-            'http://127.0.0.1:5173'
-        ];
 
         const origin = req.headers.origin;
 
-        if (origin && allowedOrigins.includes(origin)) {
+        if (origin && corsConfig.origins.includes(origin)) {
             res.setHeader('Access-Control-Allow-Origin', origin);
         }
 
