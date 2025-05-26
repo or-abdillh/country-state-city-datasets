@@ -1,8 +1,13 @@
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { City, State, Country, ICity, IState, ICountry } from 'country-state-city';
 
 @Injectable()
 export class AppService {
+
+  constructor(private configService: ConfigService) {
+
+  }
 
   /**
    * A collection of all cities retrieved using the `City.getAllCities()` method.
@@ -18,7 +23,7 @@ export class AppService {
    *          retrieving datasets for countries, states, and cities.
    */
   getHello(): string {
-    return 'This is the service part of Hulu Platforms. The service only handles getting country, state, and city datasets. Develop by Oka R. Abdillah - Digitaliz'
+    return `This is the service part of ${ this.configService.get('app.name') }. The service only handles getting country, state, and city datasets. Develop by Oka R. Abdillah - Digitaliz`
   }
 
 
