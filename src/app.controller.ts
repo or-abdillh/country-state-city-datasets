@@ -15,7 +15,7 @@ export class AppController {
     };
   }
 
-  @Get('/')
+  @Get('/datasets')
   @HttpCode(200)
   getAll() {
 
